@@ -1,23 +1,23 @@
 node {
     // reference to maven
     // ** NOTE: This 'maven-3.6.1' Maven tool must be configured in the Jenkins Global Configuration.   
-    def mvnHome = tool 'maven-3.8.5'
+     def mvnHome = tool 'maven-3.9.9'
 
     // holds reference to docker image
-    def dockerImage
+    //def dockerImage
     // ip address of the docker private repository(nexus)
     
-    def dockerRepoUrl = "localhost:8083"
-    def dockerImageName = "hello-world-java"
-    def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
+   // def dockerRepoUrl = "localhost:8083"
+   // def dockerImageName = "hello-world-java"
+  //  def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
     
-    stage('Clone Repo') { // for display purposes
+    stage('maven version') { // for display purposes
       // Get some code from a GitHub repository
-      git 'https://github.com/dstar55/docker-hello-world-spring-boot.git'
+      //git 'https://github.com/dstar55/docker-hello-world-spring-boot.git'
       // Get the Maven tool.
       // ** NOTE: This 'maven-3.6.1' Maven tool must be configured
       // **       in the global configuration.           
-      mvnHome = tool 'maven-3.8.5'
+      mvnHome = tool 'maven-3.9.9'
     }    
   
     stage('Build Project') {
@@ -37,7 +37,7 @@ node {
       })
     }
 		
-    stage('Build Docker Image') {
+  /*  stage('Build Docker Image') {
       // build docker image
       sh "whoami"
       //sh "ls -all /var/run/docker.sock"
@@ -56,4 +56,6 @@ node {
       sh "docker tag ${dockerImageName} ${dockerImageTag}"
       sh "docker push ${dockerImageTag}"
     }
+
+    */
 }
